@@ -12,44 +12,33 @@ class TodoListViewController: UITableViewController {
 
    // var itemArray = ["Find Mike","Buy Banana", "Bike Sevice"]
     var itemArray = [Item]()
-    let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    //let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let newItem = Item()
-        newItem.title = "Find Mike"
-        newItem.done = true
-        itemArray.append(newItem)
+        print(dataFilePath!)        
         
-        let newItem2 = Item()
-        newItem2.title = "Buy Banana"
-        itemArray.append(newItem2)
+//        let newItem = Item()
+//        newItem.title = "Find Mike"
+//        newItem.done = true
+//        itemArray.append(newItem)
+//        
+//        let newItem2 = Item()
+//        newItem2.title = "Buy Banana"
+//        itemArray.append(newItem2)
+//        
+//        let newItem3 = Item()
+//        newItem3.title = "Bike Service"
+//        itemArray.append(newItem3)
         
-        let newItem3 = Item()
-        newItem3.title = "Bike Service"
-        itemArray.append(newItem3)
-        
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
-//        itemArray.append(newItem3)
         
         // Do any additional setup after loading the view.
-        if let items = defaults.array(forKey: "TodoListArray") as? [Item]{
-            itemArray =  items
-        }
+//        if let items = defaults.array(forKey: "TodoListArray") as? [Item]{
+//            itemArray =  items
+//        }
+        
+        loadItems()
     }
 
 // Mark- TableView Datasource methods
@@ -83,9 +72,10 @@ class TodoListViewController: UITableViewController {
         print(itemArray[indexPath.row])
         
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        saveItems()
+        //tableView.reloadData()
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        tableView.reloadData()
-        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //Mark- Add New Items  and create alert
@@ -101,7 +91,9 @@ class TodoListViewController: UITableViewController {
             let newItem = Item()
             newItem.title = textField.text!
             self.itemArray.append(newItem)
-            self.defaults.set(self.itemArray, forKey: "TodoListArray")
+            //self.defaults.set(self.itemArray, forKey: "TodoListArray")
+            self.saveItems()
+            
             self.tableView.reloadData()
         }
         alert.addTextField { (alertTexField) in
@@ -112,6 +104,33 @@ class TodoListViewController: UITableViewController {
         alert.addAction(action)
         self.present(alert,animated: true,completion: nil)
         
+    }
+    
+    //Mark- Model Manipulation Methods
+    
+    func saveItems(){
+        
+    
+    let encoder = PropertyListEncoder()
+    do {
+        let data = try encoder.encode(itemArray)
+        try data.write(to: dataFilePath!)
+    }catch {
+        print("Error encoding item array, \(error)")
+    }
+    self.tableView.reloadData()
+    }
+    
+    func loadItems(){
+        
+        if let data = try? Data(contentsOf: dataFilePath!){
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([Item].self, from: data)
+            }catch {
+                print("Error encoding item array, \(error)")
+            }
+        }
     }
 }
 
