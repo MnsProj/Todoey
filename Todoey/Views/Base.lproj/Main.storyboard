@@ -10,7 +10,7 @@
         <!--Todoey-->
         <scene sceneID="ajh-W4-1Jm">
             <objects>
-                <tableViewController id="gKc-eE-NeE" customClass="CategoryViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="gKc-eE-NeE" customClass="Category1ViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EGm-SN-R9w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,7 +37,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dby-cq-LgZ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="addButtonPressed:" destination="gKc-eE-NeE" id="lJK-I1-rBs"/>
+                                <action selector="addButtonPressed:" destination="gKc-eE-NeE" id="VgY-2g-fsq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -53,7 +53,7 @@
         <!--Items-->
         <scene sceneID="IA1-QH-PGp">
             <objects>
-                <tableViewController id="OcW-M8-mcS" customClass="TodoListViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="OcW-M8-mcS" customClass="ToDoList2ViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r2H-DM-aTe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +85,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2vU-a8-qvz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="addButtonPressed:" destination="OcW-M8-mcS" id="iuc-mK-vpS"/>
+                                <action selector="AddButtonPressed:" destination="OcW-M8-mcS" id="X1U-o8-Jzs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -97,7 +97,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Qx6-Ui-vt8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UDW-15-B7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sd4-ZT-NDw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7GM-fm-fQo">
@@ -113,6 +112,7 @@
                         <segue destination="gKc-eE-NeE" kind="relationship" relationship="rootViewController" id="3Rw-cB-crC"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UDW-15-B7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-201" y="-15"/>
         </scene>
